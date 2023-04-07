@@ -1,0 +1,53 @@
+﻿<Window x:Class="Tasc2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tasc2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Цвет кисти:"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="colorComboBox" 
+                  SelectedIndex="0" SelectionChanged="ColorComboBox_SelectionChanged">
+            <ComboBoxItem Content="Черный" Background="Black" Foreground="White"/>
+            <ComboBoxItem Content="Белый" Background="White" Foreground="Black"/>
+            <ComboBoxItem Content="Красный" Background="Red" Foreground="White"/>
+            <ComboBoxItem Content="Зеленый" Background="Green" Foreground="White"/>
+            <ComboBoxItem Content="Синий" Background="Blue" Foreground="White"/>
+        </ComboBox>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Размер кисти:"/>
+        <Slider Grid.Row="1" Grid.Column="1" x:Name="sizeSlider" 
+                Minimum="1" Maximum="10" Value="5" TickFrequency="1" 
+                IsSnapToTickEnabled="True" ValueChanged="SizeSlider_ValueChanged"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Режим работы:"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <RadioButton x:Name="drawModeRadioButton" Content="Рисование" Margin="10 0" 
+                         IsChecked="True" Checked="ModeRadioButton_Checked"/>
+            <RadioButton x:Name="editModeRadioButton" Content="Редактирование" Margin="10 0" 
+                         Checked="ModeRadioButton_Checked"/>
+            <RadioButton x:Name="deleteModeRadioButton" Content="Удаление" Margin="10 0" 
+                         Checked="ModeRadioButton_Checked"/>
+        </StackPanel>
+        <Canvas x:Name="drawingCanvas" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Background="White" MouseDown="DrawingCanvas_MouseDown"
+                MouseMove="DrawingCanvas_MouseMove" MouseUp="DrawingCanvas_MouseUp"/>
+    </Grid>
+
+
+</Window>
